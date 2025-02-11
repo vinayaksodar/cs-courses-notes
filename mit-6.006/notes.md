@@ -51,18 +51,18 @@ Sets are generalizations of **dictionaries** and other intrinsic query databases
 
 #### Set Operations
 
-| **Container**  | **Static**                                                           | **Dynamic** | **Order** |
-| -------------- | -------------------------------------------------------------------- | ----------- | --------- |
-| `build(X)`     | Given an iterable `X`, build set from items in `X`                   |
-| `len()`        | Return the number of stored items                                    |
-| `find(k)`      | Return the stored item with key `k`                                  |
-| `insert(x)`    | Add `x` to set (replace item with key `x.key` if one already exists) |
-| `delete(k)`    | Remove and return the stored item with key `k`                       |
-| `iter_ord()`   | Return the stored items one-by-one in key order                      |
-| `find_min()`   | Return the stored item with the smallest key                         |
-| `find_max()`   | Return the stored item with the largest key                          |
-| `find_next(k)` | Return the stored item with the smallest key larger than `k`         |
-| `find_prev(k)` | Return the stored item with the largest key smaller than `k`         |
+| **Category** | **Operations**                                                                    |
+| ------------ | --------------------------------------------------------------------------------- |
+| **General**  | `build(X)`: Given an iterable `X`, build set from items in `X`                    |
+|              | `len()`: Return the number of stored items                                        |
+| **Static**   | `find(k)`: Return the stored item with key `k`                                    |
+| **Dynamic**  | `insert(x)`: Add `x` to set (replace item with key `x.key` if one already exists) |
+|              | `delete(k)`: Remove and return the stored item with key `k`                       |
+| **Order**    | `iter_ord()`: Return the stored items one-by-one in key order                     |
+|              | `find_min()`: Return the stored item with the smallest key                        |
+|              | `find_max()`: Return the stored item with the largest key                         |
+|              | `find_next(k)`: Return the stored item with the smallest key larger than `k`      |
+|              | `find_prev(k)`: Return the stored item with the largest key smaller than `k`      |
 
 > **Note:** `find` operations return `None` if no qualifying item exists.
 
@@ -108,4 +108,296 @@ Sets are generalizations of **dictionaries** and other intrinsic query databases
     <td>O(1) (amortized)</td>
     <td>O(n)</td>
   </tr>
+</table>
+
+# Lecture 3
+
+- Storing items in a array in arbitary order can implement a (not so efficient) set
+- Stored items sorted increasing by key allows:
+  - faster find min/max(at first and last index of array)
+  - faster finds via binary search: O(log n)
+
+<table>
+<tr>
+    <th rowspan = "3"> Set Data Structure</th>
+    <th> Container</th>
+    <th> Static</th>
+    <th> Dynamic</th>
+    <th colspan = "2"> Order</th>
+</tr>
+<tr>
+    <th rowspan ="2">build(X)</th>
+    <th rowspan ="2">find(k)</th>
+    <th> insert(X) </th>
+    <th> find_min() </th>
+    <th> find_prev(k) </th>
+</tr>
+<tr>
+    <th> delete(k) </th>
+    <th> find_max() </th>
+    <th> find_next(k) </th>
+</tr>
+<tr>
+    <td>Array</td>
+    <td>O(n)</td>
+    <td>O(n)</td>
+    <td>O(n)</td>
+    <td>O(n)</td>
+    <td>O(n)</td>
+</tr>
+<tr>
+    <td>Sorted Array</td>
+    <td>O(nlogn) </td>
+    <td> O(log n) </td>
+    <td> O(n) </td>
+    <td> O(1) </td>
+    <td> O(log n) </td>
+</tr>
+</table>
+
+### Sorting
+
+- A sort is destructive if it overwrites A (instead of making a new array B)
+  - Also called inplace as it uses only O(1) extra space
+- Permutaion Sort
+  - compute all permutaions and check if they are sorted O(n!n)
+- Selection Sort
+  - Find largest number in A[:i+1] and swap it to A[:i] - O(n<sup>2</sup>)
+- Insertion Sort
+  - Recursively sort A[:i] - O(n<sup>2</sup>)
+- Merge Sort
+  - Recursively sort first half and second half - O(nlogn)
+  - This is not inplace uses O(n) extra space
+
+# Lecture 4
+
+<table>
+<tr>
+    <th rowspan = "3">Data Structure</th>
+    <th> Container</th>
+    <th> Static</th>
+    <th> Dynamic</th>
+    <th colspan = "2"> Order</th>
+</tr>
+<tr>
+    <th rowspan ="2">build(X)</th>
+    <th rowspan ="2">find(k)</th>
+    <th> insert(X) </th>
+    <th> find_min() </th>
+    <th> find_prev(k) </th>
+</tr>
+<tr>
+    <th> delete(k) </th>
+    <th> find_max() </th>
+    <th> find_next(k) </th>
+</tr>
+<tr>
+    <td>Array</td>
+    <td>O(n)</td>
+    <td>O(n)</td>
+    <td>O(n)</td>
+    <td>O(n)</td>
+    <td>O(n)</td>
+</tr>
+<tr>
+    <td>Sorted Array</td>
+    <td>O(nlogn) </td>
+    <td> O(log n) </td>
+    <td> O(n) </td>
+    <td> O(1) </td>
+    <td> O(log n) </td>
+</tr>
+
+<tr>
+    <td>Direct Access Array</td>
+    <td>u </td>
+    <td> 1 </td>
+    <td> 1 </td>
+    <td> u </td>
+    <td> u </td>
+</tr>
+<tr>
+    <td>Direct Access Array</td>
+    <td>n<sub>(e)</sub> </td>
+    <td> 1<sub>(e)</sub> </td>
+    <td> 1<sub>(a)(e)</sub> </td>
+    <td> u </td>
+    <td> u </td>
+</tr>
+</table>
+
+### Hash functions
+
+1. Division hash function(bad): h(k)=k(mod m)
+   - Good when keya are uniformly distributed
+   - m should avoid symmetries of keys
+   - Idea: Don't use a fixed hash function!
+2. Universal
+
+- Hash Family H(p, m) = {h<sub>ab</sub> | a, b ∈ {0, . . . , p - 1} and a ≠ 0}
+- Parameterized by a fixed prime p > u, with a and b chosen from range {0, . . . , p - 1}
+- H is a Universal family: Pr {h(k<sub>i</sub>) = h(k<sub>j</sub>)} ≤ 1/m ∀k<sub>i</sub> ≠ k<sub>j</sub> ∈ {0, . . . , u - 1} h∈H
+- Why is universality useful? Implies short chain lengths! (in expectation)
+- X<sub>ij</sub> indicator random variable over h∈H: X<sub>ij</sub> = 1 if h(k<sub>i</sub>) = h(k<sub>j</sub>), X<sub>ij</sub> = 0 otherwise
+
+- Expected size of chain at index $h(k_i)$:  
+  $E \{X_i\} = E \left[\sum_j X_{ij} \right]$  
+   $= \sum_j E \{X_{ij}\}$  
+   $= 1 + \sum_{j \neq i} E \{X_{ij}\}$  
+   $= 1 + \sum_{j \neq i} \left[ (1) \Pr \{h(k_i) = h(k_j)\} + (0) \Pr \{h(k_i) \neq h(k_j)\} \right]$  
+   $\leq 1 + \sum_{j \neq i} \frac{1}{m}$  
+   $= 1 + \frac{n - 1}{m}$
+
+- Since m = Ω(n), load factor α = n / m = O(1), so O(1) in expectation!
+
+![Hashing and collision resolutions using chaining](../images/hashing.jpeg)
+
+# Lecture 5
+
+- Direct Access Array sort - O(n+u)
+- Counting sort, same as above, uses direct access array but allows duplicate keys using chaining - O(n+u)
+- Tuple sort - sort tuples by each of the keys least important first
+- Radix sort
+  - break each integer up into its multiples of powers of n, representing each item key its sequence of digits when represented in base n.
+  - If the integers are non-negative and the largest integer in the set is u, then this base n number will have $log_nu$ digits. We can think of these digit representations as tuples and sort them with tuple sort by sorting on each digit in order from least significant to most significant digit using counting sort. This combination of tuple sort and counting sort is called radix sort.
+  - If the largest integer in the set u ≤ nc, then radix sort runs in O(nc) time. Thus, if c is constant, then radix sort also runs in linear time!
+  - Can't be used in every case for example in floating point numbers we can have an infinite number of digits ex- 3.1415........
+
+# Lecture 6
+
+### Binary tree
+
+Height and depth are measured by nuber of edges to leaf and root respectively
+
+<table>
+<tr>
+    <th rowspan = "3">Set Data Structure</th>
+    <th> Container</th>
+    <th> Static</th>
+    <th> Dynamic</th>
+    <th colspan = "2"> Order</th>
+</tr>
+<tr>
+    <th rowspan ="2">build(X)</th>
+    <th rowspan ="2">find(k)</th>
+    <th> insert(X) </th>
+    <th> find_min() </th>
+    <th> find_prev(k) </th>
+</tr>
+<tr>
+    <th> delete(k) </th>
+    <th> find_max() </th>
+    <th> find_next(k) </th>
+</tr>
+<tr>
+    <td>Binary Tree</td>
+    <td>n log n</td>
+    <td>h</td>
+    <td>h</td>
+    <td>h</td>
+    <td>h</td>
+</tr>
+</table>
+
+<table>
+<tr>
+    <th rowspan = "3">Sequence
+     Data Structure</th>
+    <th> Container</th>
+    <th> Static</th>
+    <th> Dynamic</th>
+    <th colspan = "2"> Order</th>
+</tr>
+<tr>
+    <th rowspan ="2">build(X)</th>
+    <th rowspan ="2">find(k)</th>
+    <th> insert(X) </th>
+    <th> find_min() </th>
+    <th> find_prev(k) </th>
+</tr>
+<tr>
+    <th> delete(k) </th>
+    <th> find_max() </th>
+    <th> find_next(k) </th>
+</tr>
+<tr>
+    <td>Binary Tree</td>
+    <td>n log n</td>
+    <td>h</td>
+    <td>h</td>
+    <td>h</td>
+    <td>h</td>
+</tr>
+</table>
+
+- Augument each node with size of subtree to find ith node in traversal order in O(h) time else it will take O(n) time
+- Naively, build(X) takes O(nh) time, but can be done in O(n) time; see recitation as the elements are already in the order they need to be. In set binary tree we would have to sort them first by key if we want traversal order
+- Goal keep binary tree balanced to reduce O(h) to O(logn)
+
+# Lecture 7
+
+### AVL TRee
+
+It is a balancing scheme which uses rotations to keep the binary tree balanced  
+If tree is always balanced u becomes log n
+
+<table>
+<tr>
+    <th rowspan = "3">Set Data Structure</th>
+    <th> Container</th>
+    <th> Static</th>
+    <th> Dynamic</th>
+    <th colspan = "2"> Order</th>
+</tr>
+<tr>
+    <th rowspan ="2">build(X)</th>
+    <th rowspan ="2">find(k)</th>
+    <th> insert(X) </th>
+    <th> find_min() </th>
+    <th> find_prev(k) </th>
+</tr>
+<tr>
+    <th> delete(k) </th>
+    <th> find_max() </th>
+    <th> find_next(k) </th>
+</tr>
+<tr>
+    <td>AVL Tree</td>
+    <td>n log n</td>
+    <td>log n</td>
+    <td>log n</td>
+    <td>log n</td>
+    <td>log n</td>
+</tr>
+</table>
+
+<table>
+<tr>
+    <th rowspan = "3">Sequence
+     Data Structure</th>
+    <th> Container</th>
+    <th> Static</th>
+    <th> Dynamic</th>
+    <th colspan = "2"> Order</th>
+</tr>
+<tr>
+    <th rowspan ="2">build(X)</th>
+    <th rowspan ="2">find(k)</th>
+    <th> insert(X) </th>
+    <th> find_min() </th>
+    <th> find_prev(k) </th>
+</tr>
+<tr>
+    <th> delete(k) </th>
+    <th> find_max() </th>
+    <th> find_next(k) </th>
+</tr>
+<tr>
+    <td>AVL Tree</td>
+    <td>n log n</td>
+    <td>log n</td>
+    <td>log n</td>
+    <td>log n</td>
+    <td>log n</td>
+</tr>
 </table>
