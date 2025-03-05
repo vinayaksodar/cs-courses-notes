@@ -401,3 +401,31 @@ If tree is always balanced u becomes log n
     <td>log n</td>
 </tr>
 </table>
+
+# Lecture 8
+
+### Priority queue interface
+
+- Keep track of many items, quickly access/remove the most important
+  - Example: router with limited bandwidth, must prioritize certain kinds of messages
+  - Example: process scheduling in operating system kernels
+  - Example: discrete-event simulation (when is next occurring event?)
+  - Example: graph algorithms (later in the course)
+- Order items by key = priority so Set interface (not Sequence interface)
+- Optimized for a particular subset of Set operations: - build(X) build priority queue from iterable X - insert(x) add item x to data structure - delete max() remove and return stored item with largest key
+  find max() return stored item with largest key
+- (Usually optimized for max or min, not both)
+- Focus on insert and delete max operations: build can repeatedly insert;
+  find max() can insert(delete min())
+
+#### Priority Queue Sort
+
+- Any priority queue data structure translates into a sorting algorithm:
+  - build(A), e.g., insert items one by one in input order
+  - Repeatedly delete min() (or delete max()) to determine (reverse) sorted order
+- All the hard work happens inside the data structure
+- Running time is $T*{build} + n \cdot T*{delete_max} \leq n\cdot T*{insert} +n \cdot T*{delele_max} $
+- Many sorting algorithms we’ve seen can be viewed as priority queue sort:
+  ![Comparision of priority queue sort](../images/Screenshot%202025-02-18%20at%207.58.08%20PM.png)
+
+We use heaps to achieve this goal
