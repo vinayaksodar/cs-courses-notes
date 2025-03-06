@@ -48,9 +48,8 @@ def dfs(adj, start):
             if v not in parent:
                 parent[v] = current
                 distance[v] = distance[current] + 1
-                stack.append(
-                    v
-                )  # Visits last node in the adjacency list first, use reversed adjacency list if you don't want this
+                stack.append(v)
+                # Visits last node in the adjacency list first, use reversed adjacency list if you don't want this
     return parent, distance
 
 
