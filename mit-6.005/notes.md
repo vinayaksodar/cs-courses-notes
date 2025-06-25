@@ -1,14 +1,17 @@
 # Software construction
 
 ## Magic numbers
+
 Don't use random numbers like arr[100] what if input is greater than 100.  
 Use numbers that make sense for example if you are dealing with alphabets <=26 is much better than <27 as 26 makes it more readable in this context.
 
 ## Testing
-No code is 100% bug free no matter how many tests you write.
-[A good resource on testing](https://ocw.mit.edu/ans7870/6/6.005/s16/classes/03-testing/) - covers how methodologies and best practices. 
 
-## Code review 
+No code is 100% bug free no matter how many tests you write.
+[A good resource on testing](https://ocw.mit.edu/ans7870/6/6.005/s16/classes/03-testing/) - covers how methodologies and best practices.
+
+## Code review
+
 Code review is a widely-used technique for improving software quality by human inspection. Code review can detect many kinds of problems in code, but as a starter, this reading talked about these general principles of good code:
 
     Don’t Repeat Yourself (DRY)
@@ -27,6 +30,7 @@ Code review is a widely-used technique for improving software quality by human i
 ## Specification
 
 ### Specification structure
+
 A specification of a method consists of several clauses:
 
 a precondition , indicated by the keyword requires
@@ -41,17 +45,20 @@ So a specification like this:
     requires: val occurs exactly once in arr
     effects:  returns index i such that arr[i] = val
 … might be rendered in Java like this:
-```java
-/**
- * Find a value in an array.
- * @param arr array to search, requires that val occurs exactly once
- *            in arr
- * @param val value to search for
- * @return index i such that arr[i] = val
- */
-static int find(int[] arr, int val)
-```
+
+    ```java
+    /**
+     * Find a value in an array.
+     * @param arr array to search, requires that val occurs exactly once
+     *            in arr
+     * @param val value to search for
+     * @return index i such that arr[i] = val
+     */
+    static int find(int[] arr, int val)
+    ```
 
 Avoid null in specification and also mention mutation of any inputs or side effects explicitly
+
 ### Testing specification
+
 Your implementation may provide stronger guarantees than the specification calls for, or it may have specific behavior where the specification is undefined. But your test cases should not count on that behavior. Test cases must obey the contract, just like every other client.
