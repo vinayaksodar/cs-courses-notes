@@ -62,3 +62,18 @@ Avoid null in specification and also mention mutation of any inputs or side effe
 ### Testing specification
 
 Your implementation may provide stronger guarantees than the specification calls for, or it may have specific behavior where the specification is undefined. But your test cases should not count on that behavior. Test cases must obey the contract, just like every other client.
+
+## Exceptions
+
+You are only concerned with Exceptions and Assertions
+
+Error is a subclass of Throwable that is reserved for errors produced by the Java runtime system, such as StackOverflow­Error and OutOfMemory­Error . For some reason Assertion­Error also extends Error , even though it indicates a bug in user code, not in the runtime. Errors should be considered unrecoverable, and are generally not caught.
+
+You should use an unchecked exception only to signal an unexpected failure (i.e. a bug), or if you expect that clients will usually write code that ensures the exception will not happen, because there is a convenient and inexpensive way to avoid the exception;
+Otherwise you should use a checked exception.
+
+## Assertions
+
+They are usually used only in debugging and removed in productions. Use them to check the LOGIC of our codes, not where it fails for example if you expect an array to be sorted by at some point in the code or say x<0 in some point in the code. 
+
+Purpose: Validate assumptions about internal program logic that should always hold true if the code is correct.
