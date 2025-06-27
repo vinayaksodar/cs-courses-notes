@@ -8,11 +8,9 @@ Use numbers that make sense for example if you are dealing with alphabets <=26 i
 ## Testing
 
 No code is 100% bug free no matter how many tests you write.
-[A good resource on testing](https://ocw.mit.edu/ans7870/6/6.005/s16/classes/03-testing/) - covers how methodologies and best practices.
+[A good resource on testing](https://ocw.mit.edu/ans7870/6/6.005/s16/classes/03-testing/) - covers how methodologies, partitioning the input space and best practices.
 
 ## Code review
-
-Code review is a widely-used technique for improving software quality by human inspection. Code review can detect many kinds of problems in code, but as a starter, this reading talked about these general principles of good code:
 
     Don’t Repeat Yourself (DRY)
     Comments where needed
@@ -74,6 +72,15 @@ Otherwise you should use a checked exception.
 
 ## Assertions
 
-They are usually used only in debugging and removed in productions. Use them to check the LOGIC of our codes, not where it fails for example if you expect an array to be sorted by at some point in the code or say x<0 in some point in the code. 
+They are usually used only in debugging and removed in productions. Use them to check the LOGIC of our codes, not where it fails for example if you expect an array to be sorted by at some point in the code or say x<0 in some point in the code.
 
 Purpose: Validate assumptions about internal program logic that should always hold true if the code is correct.
+
+## Mutability and Immutability
+
+Aliasing—having multiple references to the same mutable object—is problematic, especially when caching or when the object is mutated elsewhere in the code while you still assume it's unchanged.
+
+This can be addressed by:
+
+1. Returning a copy of the object instead of mutating the original. However, this may lead to unnecessary copies, even if the returned copy is never modified.
+2. Returning an immutable object. This ensures that if the object needs to be modified later, a new object is created, while existing references continue to point to the original, avoiding unintended side effects.
