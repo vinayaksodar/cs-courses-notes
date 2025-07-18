@@ -11,11 +11,34 @@ We form our first abstraction using lumped models of real systems and go from ma
 - Node method(workhorse of industry learn this one method properly)
 - Methods that can be applied to only linear circuits(i.e only resistors no inductors or capacitors all voltage and current variables that we want to solve for are linear.) but enable us to solve problems quickly(Superposition, Thevnin, Norton)
 
+- Thevnin and Norton are based on the simple idea of when you measure the voltage at the terminals in your house you have no idea the circuit behind them that bought it from the powerstation to your home, you know that terminal voltage decreases when you connect some load across it.
+- In practise you can't actually short the teminals to find $i_{sc}$ nor can you go and disable the sources to find $R_t$ for the Thevnin and Norton analysis so you find the open circuit voltage $V_{oc}$ and you then connect a known resistance and then measure the terminal voltage $V_t$
+  - $V_{t} = V_{oc} + i_{test}R_t$ reduces to $V_{t} = V_{oc} + \frac{V_t}{R_{known}}R_t$ ,you can find $R_{t}$ like this.
+
 ## Lec 4-5
 
 The use of digital circuits to transmit signals is motivated by using an example that shows that shows how digital signals are more resistant to noise as they operate only at high and low values.
 Nand nor inverter etc are designed from a switch(mosfet) and a voltage source this is why we see nands and nors more than ands and ors as they are made from primitives.
 Nand, Nor are funtionally complete you can make all gates with just one of them And, or are not as you can't make a not gate with them.
+
+if you know the truth table you can find the transfer function by just combining all the high outputs in an or operator
+
+### Example: Derive Logic Expression from Truth Table
+
+| A | B | Y |
+|---|---|---|
+| 0 | 0 | 0 |
+| 0 | 1 | 1 |
+| 1 | 0 | 1 |
+| 1 | 1 | 0 |
+
+**Transfer Function (Sum of Products):**
+
+- Y = A̅B + AB̅
+
+Which simplifies to:
+
+- Y = A ⊕ B
 
 ## Lec 6
 

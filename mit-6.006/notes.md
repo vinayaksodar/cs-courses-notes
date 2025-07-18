@@ -1,6 +1,7 @@
 # Lecture 1
 
-Order of increasing asymtotic complexity
+Order of increasing asymptotic complexity
+
 | Shorthand | Constant | Logarithmic | Linear | Quadratic | Polynomial | Exponential |
 | --- | --- | --- | --- | --- | --- | --- |
 | Θ(f(n)) | Θ(1) | Θ(log n) | Θ(n) | Θ(n^2) | Θ(n^c) | 2^Θ(n^c) |

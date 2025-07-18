@@ -24,6 +24,7 @@ d = {}
 L = {}  # Level Set
 
 
+# Here we use levelsets to keep track of our progress below you see the same thing but using queue
 def bfs(adj, start):
     L["0"] = [start]
     i = 0
