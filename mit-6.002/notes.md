@@ -15,6 +15,7 @@ We form our first abstraction using lumped models of real systems and go from ma
 
 The use of digital circuits to transmit signals is motivated by using an example that shows that shows how digital signals are more resistant to noise as they operate only at high and low values.
 Nand nor inverter etc are designed from a switch(mosfet) and a voltage source this is why we see nands and nors more than ands and ors as they are made from primitives.
+Nand, Nor are funtionally complete you can make all gates with just one of them And, or are not as you can't make a not gate with them.
 
 ## Lec 6
 
@@ -57,3 +58,19 @@ Opamp is introduced. It is told to be the workhorse of the analog electronics in
 An input is applied to an opamp and it is shown how sensitive the gain is to external factors like temperature.
 
 We see how using feedback we can get rid of the tremondously unpredictable and large internal gain and instead create a custom gain by attaching it to a couple of resistors.
+
+## lec 20
+
+We build an integrator and a differentiator usings opamps more importantly how to go about building them using various trial and error is discussed.
+
+## lec 21
+
+An oscillator is built with an opamp using a positive feedback instead of anegative feedback so we just hit the rails of opamp any time the input signal changes sign.
+
+## lec 22
+
+The concept of sending a square wave along with a signal is discussed as a method of sending a clock or time so that the receiver actually knows how to interpret the signal.
+
+We also look at how an inverter gate consume power both when it is swithing(active) and when it is stationary this is what happens in processors. we also see the complementory switch used to reduce power consumption which is where the term cmos comes from. This is the basic building block in processors.
+
+END
