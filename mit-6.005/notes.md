@@ -84,3 +84,10 @@ This can be addressed by:
 
 1. Returning a copy of the object instead of mutating the original. However, this may lead to unnecessary copies, even if the returned copy is never modified.
 2. Returning an immutable object. This ensures that if the object needs to be modified later, a new object is created, while existing references continue to point to the original, avoiding unintended side effects.
+
+## Recursion vs iteration
+
+The main reason to use recursion is to take more advantage of immutability. In an ideal recursive implementation, all variables are final, all data is immutable, and the recursive methods are all pure functions in the sense that they do not mutate anything. The behavior of a method can be understood simply as a relationship between its parameters and its return value, with no side effects on any other part of the program. This kind of paradigm is called functional programming , and it is far easier to reason about than imperative programming with loops and variables.
+
+The main downside of recursion is that it may take more space than an iterative solution. Building up a stack of recursive calls consumes memory temporarily, and the stack is limited in size, which may become a limit on the size of the problem that your recursive implementation can solve.
+
