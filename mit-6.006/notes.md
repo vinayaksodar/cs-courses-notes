@@ -1,4 +1,4 @@
-# Lecture 1
+## Lecture 1
 
 Order of increasing asymptotic complexity
 
@@ -16,7 +16,7 @@ We moved from 32 to 64 bit as 32 bit limited ram memory to 4gb
 
 A data structure is a way to store a non-constant amount of data, supporting a set of operations to interact with that data. The set of operations supported by a data structure is called an interface. Many data structures might support the same interface, but could provide different performance for each operation.
 
-# Lecture 2
+## Lecture 2
 
 ### Sequence Interface (L02, L07)
 
@@ -111,7 +111,7 @@ Sets are generalizations of **dictionaries** and other intrinsic query databases
   </tr>
 </table>
 
-# Lecture 3
+## Lecture 3
 
 - Storing items in a array in arbitary order can implement a (not so efficient) set
 - Stored items sorted increasing by key allows:
@@ -170,7 +170,7 @@ Sets are generalizations of **dictionaries** and other intrinsic query databases
   - Recursively sort first half and second half - O(nlogn)
   - This is not inplace uses O(n) extra space
 
-# Lecture 4
+## Lecture 4
 
 <table>
 <tr>
@@ -253,7 +253,7 @@ Sets are generalizations of **dictionaries** and other intrinsic query databases
 
 ![Hashing and collision resolutions using chaining](../images/hashing.jpeg)
 
-# Lecture 5
+## Lecture 5
 
 - Direct Access Array sort - O(n+u)
 - Counting sort, same as above, uses direct access array but allows duplicate keys using chaining - O(n+u)
@@ -264,7 +264,7 @@ Sets are generalizations of **dictionaries** and other intrinsic query databases
   - If the largest integer in the set u ≤ nc, then radix sort runs in O(nc) time. Thus, if c is constant, then radix sort also runs in linear time!
   - Can't be used in every case for example in floating point numbers we can have an infinite number of digits ex- 3.1415........
 
-# Lecture 6
+## Lecture 6
 
 ### Binary tree
 
@@ -335,7 +335,7 @@ Height and depth are measured by nuber of edges to leaf and root respectively
 - Naively, build(X) takes O(nh) time, but can be done in O(n) time; see recitation as the elements are already in the order they need to be. In set binary tree we would have to sort them first by key if we want traversal order
 - Goal keep binary tree balanced to reduce O(h) to O(logn)
 
-# Lecture 7
+## Lecture 7
 
 ### AVL TRee
 
@@ -403,7 +403,7 @@ If tree is always balanced u becomes log n
 </tr>
 </table>
 
-# Lecture 8
+## Lecture 8
 
 ### Priority queue interface
 
@@ -430,3 +430,72 @@ If tree is always balanced u becomes log n
   ![Comparision of priority queue sort](../images/Screenshot%202025-02-18%20at%207.58.08%20PM.png)
 
 We use heaps to achieve this goal
+
+## Lecture 9
+
+Common graph terminology like vertices, edges, directed, undirected, out/in degree of vertex.
+
+Adjacency lists are used to store graphs efficiently.
+
+### Breadth-First Search
+
+We know that graphs are used everywhere to store data so we need some methods of exploring them.
+
+BFS gives level order traversal of graph
+We also use bfs to get single source shortest paths(SSSP) in unweighted graphs.
+
+O(V+E) time traversal
+
+## Lecture 10
+
+### Deapth-First Search
+
+DFS doesn't give SSSP but we can still find reachability of vertices and traversal order.
+
+DFS seems to be more widely used than BFS for traversal order as it can give preorder, inorder and postorder traversal and is also easier to implement recursively.
+
+DFS is also used for cycle detection and to get a topological ordering for DAGs.
+
+Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge u-v, vertex u comes before v in the ordering.
+
+Note: Topological Sorting for a graph is not possible if the graph is not a DAG.
+
+Most commonly the ordering is the reverse order in which DFS finishes visiting the vertices
+
+BFS can also give topological sort and cycle detection although it is less widely used.
+
+## Lecture 11
+
+SSSP for DAGs using DAG relaxation i.e. relax edges according to topological order.
+
+Relaxation is the key concept in finding shortest paths for any algorithm.
+
+## Lecture 12
+
+Bellman Ford algorithm which finds SSSP for any general graph.
+
+## Lecture 13
+
+Dijkstra's algorithm, finds SSSP for general graph with non negative weights. Similar to dag relaxation but instead of processing in topological order we just process the lowest distance first and remove that vertex using priority queue.
+
+![Summary: Weighted Single-Source shortest paths](image.png)
+
+## Lecture 15
+
+### SRTBOT framework
+
+How to solve a problem recursively (SRT BOT)
+
+1. Subproblem definition
+2. Relate subproblem solutions recursively
+3. Topological order on subproblems (⇒ subproblem DAG)
+4. Base cases of relation
+5. Original problem solution via subproblem(s)
+6. Time analysis
+
+## Lecture 16
+
+if you cant figure out exact subproblem try adding constraints or increasing the space of problems
+
+if you need both prefix and suffix in a subproblem you probably need substrings
+dp seems to bring exponential time down to polynomial time for example in the arithmetic parentheses brute force would be 2^n but it is brought down to n^3
