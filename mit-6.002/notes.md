@@ -66,7 +66,11 @@ Response of LC and RLC circuits to sinusoidal input is studied. This is motivate
 
 ## Lec 17
 
-We now learn to solve the circuits using complex analysis and just take the real part everywhere as the math is so much simpler. Remember this is only for the math we are only concerned with the real parts everywhere. we also see graphs with relation to frequency now as the circuits behave differntly wrt frequency of input not only time.
+We now learn to solve the circuits using complex analysis and just take the real part everywhere as the math is so much simpler. Remember this is only for the math, we are only concerned with the real parts everywhere.
+
+This also only gives the steady state response and only for sinusoidal inputs, for transient response we have to use integration and differentiation first principles method.
+
+we also see graphs with relation to frequency now as the circuits behave differntly wrt frequency of input not only time.
 
 ## lec 18
 
