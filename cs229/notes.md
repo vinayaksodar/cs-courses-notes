@@ -375,3 +375,78 @@ Examples:
 
 - Gaussian family → canonical response: **identity**
 - Bernoulli family → canonical response: **logistic function**
+
+The reason we **choose the exponential family** is that it gives us a very **general, mathematically convenient framework** for building learning algorithms.
+
+---
+
+#### 1. **Unifying Framework**
+
+Many common distributions are members of the exponential family:
+
+- Gaussian → Linear Regression
+- Bernoulli → Logistic Regression
+- Multinomial → Softmax Regression
+- Poisson → Poisson Regression
+
+So by restricting ourselves to exponential-family distributions, we get a **single recipe** (GLM) that can cover regression, classification, count models, etc.
+
+---
+
+#### 2. **Mathematical Convenience**
+
+Exponential family distributions have very nice properties:
+
+- The **log-likelihood** is **concave** in the natural parameter $\eta$ (good for optimization).
+- Expectation and variance are tightly linked:
+
+  $$
+  E[T(y)] = a'(\eta), \quad \text{Var}(T(y)) = a''(\eta)
+  $$
+
+  (where $a(\eta)$ is the log-partition function).
+  → This makes gradients and Hessians easy to compute.
+- They guarantee a **normalization constant** is built-in via $a(\eta)$, so probability distributions are always valid.
+
+---
+
+#### 3. **Sufficient Statistics**
+
+The form $p(y;\eta) = b(y) \exp(\eta^T T(y) - a(\eta))$ makes it explicit what the **sufficient statistic** $T(y)$ is.
+This is crucial for efficient estimation: the entire dataset can often be summarized by simple aggregates (like sums, counts, or averages).
+
+---
+
+#### 4. **Link Functions Come for Free**
+
+When we combine exponential-family likelihoods with the linearity assumption $\eta = \theta^T x$, the **canonical link functions** arise automatically:
+
+- Gaussian → identity link
+- Bernoulli → logistic (sigmoid) link
+- Poisson → log link
+  So instead of arbitrarily “inventing” a sigmoid for classification, it **falls out naturally** from the exponential-family structure.
+
+---
+
+#### 5. **Maximum Likelihood ↔ Convex Optimization**
+
+With exponential-family distributions, the **negative log-likelihood** is a convex function in $\theta$.
+That means:
+
+- No bad local minima
+- Standard optimization methods (Newton’s method, gradient descent, etc.) converge reliably.
+
+---
+
+We choose the exponential family because it is **broad enough** to cover the distributions we care about, but also **structured enough** to give us:
+
+- simple sufficient statistics,
+- automatic link functions,
+- convex likelihoods,
+- efficient optimization.
+
+That’s why GLMs (built from exponential family assumptions) are both *general* and *practical*.
+
+---
+
+Do you want me to also make a **table** of "Distribution → Canonical link → GLM model" so you can see the mapping between exponential-family members and different regression models?
