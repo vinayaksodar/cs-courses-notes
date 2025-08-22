@@ -635,7 +635,7 @@ The kernel trick applies to any algorithm where computations can be formulated t
 **Key Idea:**
 By using kernels, we implicitly work in high-dimensional feature spaces without explicitly computing feature mappings.
 
-## Support Vector Machine (SVM) – Brief Summary
+## Support Vector Machine (SVM)
 
 ### **Goal**
 
