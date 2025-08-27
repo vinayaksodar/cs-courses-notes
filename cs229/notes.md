@@ -37,17 +37,17 @@ $$
 
 ### Probabilistic Interpretation
 
-There are two schools of thought: the **Frequentist approach** and the **Bayesian approach**.
+There are two schools of thought: the **Frequentist approach*- and the **Bayesian approach**.
 
 ---
 
 #### Frequentist Approach
 
 - Parameters ($\theta$) are treated as **fixed but unknown constants**.
-- We use **Maximum Likelihood Estimation (MLE)** to find point estimates of parameters.
+- We use **Maximum Likelihood Estimation (MLE)*- to find point estimates of parameters.
 - We talk about **standard error**, not standard deviation, when parameters are point estimates.
 
-> **Standard error** is the standard deviation of the estimated parameter across different datasets.
+> **Standard error*- is the standard deviation of the estimated parameter across different datasets.
 
 The assumed model is:
 
@@ -61,15 +61,15 @@ i.e. $p(y|x;θ) = \mathcal{N}(\theta^Tx, \sigma^2) $
 
 #### Bayesian Approach
 
-- Parameters ($\theta$) are treated as **random variables** with prior distributions.
+- Parameters ($\theta$) are treated as **random variables*- with prior distributions.
 - Learning is done using **Bayes’ theorem**:
 
 $$
 p(\theta \mid D) \propto p(D \mid \theta) \, p(\theta)
 $$
 
-- Instead of a single point estimate, we obtain a **posterior distribution** over parameters.
-- This allows us to quantify **uncertainty in $\theta$** more explicitly.
+- Instead of a single point estimate, we obtain a **posterior distribution*- over parameters.
+- This allows us to quantify **uncertainty in $\theta$*- more explicitly.
 
 The model form is the same:
 
@@ -81,26 +81,26 @@ In this course we mostly stop at MLE and subscribe to the frequentist approach
 
 ### Parametric vs Non-Parametric Learning
 
-**Locally Weighted Linear Regression (LWLR)** is the first example we encounter of a **non-parametric algorithm**.
+**Locally Weighted Linear Regression (LWLR)*- is the first example we encounter of a **non-parametric algorithm**.
 
-- The standard (unweighted) **linear regression** is a **parametric learning algorithm** because:
+- The standard (unweighted) **linear regression*- is a**parametric learning algorithm*- because:
 
   - It has a fixed, finite number of parameters ($\theta_i$) that are fit to the data.
   - Once we’ve estimated $\theta_i$ and stored them, we no longer need to keep the training data around to make future predictions.
 
 - In contrast, to make predictions using **locally weighted linear regression**:
-  - We need to keep the **entire training set** around.
+  - We need to keep the **entire training set*- around.
   - The prediction at a new point depends on re-weighting the training examples relative to that query.
 
 ---
 
-The term **“non-parametric”** (roughly) refers to the fact that the **amount of information we must retain to represent the hypothesis $h$** grows **linearly with the size of the training set**.
+The term **“non-parametric”*- (roughly) refers to the fact that the **amount of information we must retain to represent the hypothesis $h$*- grows **linearly with the size of the training set**.
 
 ## Logistic Regression
 
 ### Binary classification
 
-We assume that the target variable $y^{(i)} \in \{0,1\}$ follows a **Bernoulli distribution** whose parameter p depends on the input $x^{(i)}$:
+We assume that the target variable $y^{(i)} \in \{0,1\}$ follows a **Bernoulli distribution*- whose parameter p depends on the input $x^{(i)}$:
 
 $$
  p(y | x; θ) =  \text{Bernoulli}(p^{(i)})
@@ -123,8 +123,8 @@ algorithms), the choice of the logistic(sigmoid) function is a fairly natural on
 
 ### Interpretation
 
-- **Model form:** Bernoulli likelihood for binary outputs.
-- **Parameters:** $\theta$ (weights) determine the probability via the sigmoid mapping.
+- **Model form:*- Bernoulli likelihood for binary outputs.
+- **Parameters:*- $\theta$ (weights) determine the probability via the sigmoid mapping.
 - **Log-likelihood:**
 
 $$
@@ -188,7 +188,7 @@ is the probability that the model predicts class $i$ for example $x^{(j)}$.
 
 ---
 
-With these gradients, one can implement **(stochastic) gradient descent** to minimize the loss function $\ell(\theta)$.
+With these gradients, one can implement **(stochastic) gradient descent*- to minimize the loss function $\ell(\theta)$.
 
 > We use bernouli to model binary classification and not binomial as we have only a single output if out output was a two dimensional vector one for each class it would be modeled using binomial which is just a special case of the multinomial.
 
@@ -215,7 +215,7 @@ $$
 
 This has a natural interpretation:
 
-- Approximate $f$ via a linear function that is **tangent** to $f$ at the current guess $\theta$.
+- Approximate $f$ via a linear function that is **tangent*- to $f$ at the current guess $\theta$.
 - Solve for where that linear approximation equals zero.
 - Let the next guess for $\theta$ be that solution.
 
@@ -224,7 +224,7 @@ This has a natural interpretation:
 #### Maximization via Newton’s Method
 
 Newton’s method helps us solve equations of the form $f(\theta) = 0$.  
-But what if we want to **maximize a function** $\ell(\theta)$?
+But what if we want to **maximize a function*- $\ell(\theta)$?
 
 - The maxima of $\ell$ correspond to points where $\ell'(\theta) = 0$.
 - By setting $f(\theta) = \ell'(\theta)$, we obtain the Newton update for maximization/minimization:
@@ -244,7 +244,7 @@ $$
 \theta := \theta - H^{-1} \nabla_\theta \ell(\theta)
 $$
 
-- $\nabla_\theta \ell(\theta)$ is the **gradient vector** (partial derivatives of $\ell(\theta)$ w.r.t. each $\theta_i$).
+- $\nabla_\theta \ell(\theta)$ is the **gradient vector*- (partial derivatives of $\ell(\theta)$ w.r.t. each $\theta_i$).
 - $H$ is the **Hessian matrix**, a $(d+1) \times (d+1)$ matrix (including intercept), defined as:
 
 $$
@@ -255,7 +255,7 @@ $$
 
 #### Efficiency Notes
 
-- Newton’s method typically converges **faster** than batch gradient descent, requiring fewer iterations to get very close to the minimum.
+- Newton’s method typically converges **faster*- than batch gradient descent, requiring fewer iterations to get very close to the minimum.
 - However, each iteration is more **computationally expensive**, since it requires computing and inverting the Hessian ($d \times d$ matrix).
 - When applied to maximize the **log-likelihood in logistic regression**, this method is also known as **Fisher Scoring**.
 
@@ -263,15 +263,15 @@ $$
 
 ### The Exponential Family
 
-A distribution belongs to the **exponential family** if it can be written in the form:
+A distribution belongs to the **exponential family*- if it can be written in the form:
 
 $$
 p(y; \eta) = b(y) \exp\left(\eta^T T(y) - a(\eta)\right) \tag{3.1}
 $$
 
 - $\eta$: **natural (canonical) parameter**
-- $T(y)$: **sufficient statistic** (often $T(y) = y$)
-- $a(\eta)$: **log-partition function** (ensures normalization)
+- $T(y)$: **sufficient statistic*- (often $T(y) = y$)
+- $a(\eta)$: **log-partition function*- (ensures normalization)
 - $b(y)$: base measure
 
 The term $e^{-a(\eta)}$ acts as a normalization constant ensuring the distribution integrates/sums to 1.
@@ -298,7 +298,7 @@ Given input $x$ and output $y$, a GLM is defined by three assumptions/design cho
    y \mid x; \theta \sim \text{ExponentialFamily}(\eta)
    $$
 
-2. **Prediction target:**  
+2. **Prediction target:*-  
    We predict the **expected value of $T(y)$ given $x$**:
 
    $$
@@ -307,7 +307,7 @@ Given input $x$ and output $y$, a GLM is defined by three assumptions/design cho
 
    (In most cases, $T(y) = y$. For logistic regression, $h_\theta(x) = P(y=1 \mid x; \theta) = E[y \mid x; \theta]$.)
 
-3. **Linear relationship:**  
+3. **Linear relationship:*-  
    The natural parameter $\eta$ is a linear function of $x$:
    $$
    \eta = \theta^T x
@@ -318,7 +318,7 @@ Given input $x$ and output $y$, a GLM is defined by three assumptions/design cho
 
 ### Logistic Regression as a GLM
 
-The **Bernoulli distribution** can be written as:
+The **Bernoulli distribution*- can be written as:
 
 $$
 p(y; \phi) = \phi^y (1-\phi)^{1-y}
@@ -378,7 +378,7 @@ Examples:
 - Gaussian family → canonical response: **identity**
 - Bernoulli family → canonical response: **logistic function**
 
-The reason we **choose the exponential family** is that it gives us a very **general, mathematically convenient framework** for building learning algorithms.
+The reason we **choose the exponential family*- is that it gives us a very**general, mathematically convenient framework*- for building learning algorithms.
 
 ---
 
@@ -391,7 +391,7 @@ Many common distributions are members of the exponential family:
 - Multinomial → Softmax Regression
 - Poisson → Poisson Regression
 
-So by restricting ourselves to exponential-family distributions, we get a **single recipe** (GLM) that can cover regression, classification, count models, etc.
+So by restricting ourselves to exponential-family distributions, we get a **single recipe*- (GLM) that can cover regression, classification, count models, etc.
 
 ---
 
@@ -399,7 +399,7 @@ So by restricting ourselves to exponential-family distributions, we get a **sing
 
 Exponential family distributions have very nice properties:
 
-- The **log-likelihood** is **concave** in the natural parameter $\eta$ (good for optimization).
+- The **log-likelihood*- is**concave*- in the natural parameter $\eta$ (good for optimization).
 - Expectation and variance are tightly linked:
 
   $$
@@ -408,31 +408,31 @@ Exponential family distributions have very nice properties:
 
   (where $a(\eta)$ is the log-partition function).
   → This makes gradients and Hessians easy to compute.
-- They guarantee a **normalization constant** is built-in via $a(\eta)$, so probability distributions are always valid.
+- They guarantee a **normalization constant*- is built-in via $a(\eta)$, so probability distributions are always valid.
 
 ---
 
 #### 3. **Sufficient Statistics**
 
-The form $p(y;\eta) = b(y) \exp(\eta^T T(y) - a(\eta))$ makes it explicit what the **sufficient statistic** $T(y)$ is.
+The form $p(y;\eta) = b(y) \exp(\eta^T T(y) - a(\eta))$ makes it explicit what the **sufficient statistic*- $T(y)$ is.
 This is crucial for efficient estimation: the entire dataset can often be summarized by simple aggregates (like sums, counts, or averages).
 
 ---
 
 #### 4. **Link Functions Come for Free**
 
-When we combine exponential-family likelihoods with the linearity assumption $\eta = \theta^T x$, the **canonical link functions** arise automatically:
+When we combine exponential-family likelihoods with the linearity assumption $\eta = \theta^T x$, the **canonical link functions*- arise automatically:
 
 - Gaussian → identity link
 - Bernoulli → logistic (sigmoid) link
 - Poisson → log link
-  So instead of arbitrarily “inventing” a sigmoid for classification, it **falls out naturally** from the exponential-family structure.
+  So instead of arbitrarily “inventing” a sigmoid for classification, it **falls out naturally*- from the exponential-family structure.
 
 ---
 
 #### 5. **Maximum Likelihood ↔ Convex Optimization**
 
-With exponential-family distributions, the **negative log-likelihood** is a convex function in $\theta$.
+With exponential-family distributions, the **negative log-likelihood*- is a convex function in $\theta$.
 That means:
 
 - No bad local minima
@@ -440,20 +440,20 @@ That means:
 
 ---
 
-We choose the exponential family because it is **broad enough** to cover the distributions we care about, but also **structured enough** to give us:
+We choose the exponential family because it is **broad enough*- to cover the distributions we care about, but also**structured enough*- to give us:
 
 - simple sufficient statistics,
 - automatic link functions,
 - convex likelihoods,
 - efficient optimization.
 
-That’s why GLMs (built from exponential family assumptions) are both *general* and *practical*.
+That’s why GLMs (built from exponential family assumptions) are both *general- and *practical*.
 
 ## Generative learning algorithms
 
 ### Discriminative vs. Generative Models
 
-- **Discriminative models** directly learn the **posterior distribution**:
+- **Discriminative models*- directly learn the **posterior distribution**:
 
   $$
   P(Y \mid X)
@@ -461,7 +461,7 @@ That’s why GLMs (built from exponential family assumptions) are both *general*
 
   This is the probability of the label $Y$ given the input $X$. An example of a discriminative model is **logistic regression**.
 
-- **Generative models** learn the **joint distribution** of $X$ and $Y$ by modeling:
+- **Generative models*- learn the**joint distribution*- of $X$ and $Y$ by modeling:
 
   $$
   P(X \mid Y) \quad \text{and} \quad P(Y)
@@ -484,9 +484,9 @@ $$
 P(X \mid Y = y) = \mathcal{N}(X; \mu_y, \Sigma_y)
 $$
 
-- If we **assume a shared covariance matrix** $\Sigma$ across classes (i.e., $\Sigma_0 = \Sigma_1 = \Sigma$), the decision boundary is **linear**.
+- If we **assume a shared covariance matrix*- $\Sigma$ across classes (i.e., $\Sigma_0 = \Sigma_1 = \Sigma$), the decision boundary is **linear**.
 
-- If each class has its **own covariance matrix** $\Sigma_y$, the decision boundary becomes **quadratic**.
+- If each class has its **own covariance matrix*- $\Sigma_y$, the decision boundary becomes **quadratic**.
 
 ---
 
@@ -504,7 +504,7 @@ Where $\theta$ includes $\mu_0, \mu_1, \Sigma$, and the class priors $\phi$ in t
 
 #### Logistic Regression vs. GDA
 
-- GDA gives $P(Y \mid X)$ in **sigmoid form** when $P(X \mid Y)$ is Gaussian with shared covariance $\Sigma$:
+- GDA gives $P(Y \mid X)$ in **sigmoid form*- when $P(X \mid Y)$ is Gaussian with shared covariance $\Sigma$:
 
   $$
   P(Y = 1 \mid X) = \frac{1}{1 + \exp(-\theta^T X)}
@@ -512,16 +512,16 @@ Where $\theta$ includes $\mu_0, \mu_1, \Sigma$, and the class priors $\phi$ in t
 
 Where $\theta$ includes $\mu_0, \mu_1, \Sigma$, and the class priors.
 
-- But GDA makes **strong assumptions** about the form of $P(X \mid Y)$. If these assumptions (e.g., Gaussian distribution) are **correct**, GDA performs better.
+- But GDA makes **strong assumptions*- about the form of $P(X \mid Y)$. If these assumptions (e.g., Gaussian distribution) are **correct**, GDA performs better.
 
-- If the assumptions are **incorrect**, then discriminative models like **logistic regression** can perform better, especially with a large dataset.
+- If the assumptions are **incorrect**, then discriminative models like **logistic regression*- can perform better, especially with a large dataset.
 
 ---
 
 #### Rule of Thumb
 
-- If you're **unsure** about the distribution of $P(X \mid Y)$, use **logistic regression**.
-- If you have **strong prior knowledge** about $P(X \mid Y)$, a **generative model** (like GDA) may perform better.
+- If you're **unsure*- about the distribution of $P(X \mid Y)$, use **logistic regression**.
+- If you have **strong prior knowledge*- about $P(X \mid Y)$, a**generative model*- (like GDA) may perform better.
 - With a **large dataset**, logistic regression is often preferred due to fewer assumptions and better asymptotic behavior.
 
 Convex optimization problem
@@ -536,7 +536,7 @@ That’s why SVM’s trick is to avoid the non-convex ||w|| = 1 constraint and i
 
 ## Kernels
 
-Instead of calculating the inner product of **ϕ(xᵢ)** and **ϕ(xⱼ)** directly (where ϕ maps data to a higher-dimensional feature space), we use a kernel function **K(xᵢ, xⱼ)** such that:
+Instead of calculating the inner product of **ϕ(xᵢ)*- and **ϕ(xⱼ)*- directly (where ϕ maps data to a higher-dimensional feature space), we use a kernel function**K(xᵢ, xⱼ)*- such that:
 
 $$
 K(xᵢ, xⱼ) = \langle ϕ(xᵢ), ϕ(xⱼ) \rangle
@@ -547,13 +547,13 @@ $$
 K(xᵢ, xⱼ) = \langle ϕ(xᵢ), ϕ(xⱼ) \rangle = \langle x_i, x_j \rangle ^ 2
 $$
 
-This allows us to **avoid explicitly computing the high-dimensional mapping** and by extension the innerproduct using the higher dimensional mapping, making computation efficient.
+This allows us to **avoid explicitly computing the high-dimensional mapping*- and by extension the innerproduct using the higher dimensional mapping, making computation efficient.
 
 ---
 
 ### When Can We Apply Kernels?
 
-Kernels can only be used if the algorithm’s **learning rule or update rule** involves **inner products** of the input vectors.
+Kernels can only be used if the algorithm’s **learning rule or update rule*- involves**inner products*- of the input vectors.
 
 #### **Example: LMS (Least Mean Squares)**
 
@@ -577,7 +577,7 @@ $$
 y = w(T)^\top x = \sum_{i=1}^T α_i \big(x(i)^\top x\big)
 $$
 
- Here, the prediction and learning rule depend only on **inner products** $x(i)^\top x$.
+ Here, the prediction and learning rule depend only on **inner products*- $x(i)^\top x$.
 Thus, we can replace $x(i)^\top x$ with a kernel $K(x(i), x)$, giving:
 
 $$
@@ -590,7 +590,7 @@ This is the **kernelized LMS**.
 
 ### Conditions for a Valid Kernel
 
-- The **kernel matrix** $K$ (Gram matrix), where $K_{ij} = K(x_i, x_j)$, must be **positive semi-definite** (**Mercer’s condition**).
+- The **kernel matrix*- $K$ (Gram matrix), where $K_{ij} = K(x_i, x_j)$, must be**positive semi-definite*- (**Mercer’s condition**).
 
 ---
 
@@ -639,7 +639,7 @@ By using kernels, we implicitly work in high-dimensional feature spaces without 
 
 ### **Goal**
 
-Find a hyperplane that **maximizes the geometric margin** between positive and negative examples.
+Find a hyperplane that **maximizes the geometric margin*- between positive and negative examples.
 For linearly separable data, this is formulated as:
 
 $$
@@ -678,7 +678,7 @@ $$
 \alpha_i \ge 0, \quad \sum_{i=1}^n \alpha_i y^{(i)} = 0
 $$
 
-The dual **depends only on inner products** $\langle x^{(i)}, x^{(j)} \rangle$.
+The dual **depends only on inner products*- $\langle x^{(i)}, x^{(j)} \rangle$.
 
 ---
 
@@ -690,7 +690,7 @@ $$
 f(x) = \sum_{i=1}^n \alpha_i y^{(i)} \langle x^{(i)}, x \rangle + b
 $$
 
-Only **support vectors** (points with $\alpha_i > 0$) contribute to the prediction.
+Only **support vectors*- (points with $\alpha_i > 0$) contribute to the prediction.
 
 ---
 
@@ -709,5 +709,241 @@ This allows SVMs to operate in **high- or infinite-dimensional feature spaces wi
 
 **Key Insight:**
 
-- SVM optimization in **dual form** enables the kernel trick.
+- SVM optimization in **dual form*- enables the kernel trick.
 - Kernels make SVM a powerful nonlinear classifier.
+- Use soft margin SVM to avoid overfitting.
+- SVMs are mostly used as they do not require you to fiddle with any learning rate in most packages like scikit learn.
+
+Here’s the **complete final note in clean Markdown format**:
+
+---
+
+## Decision Trees and Ensemble Methods
+
+Decision trees perform **greedy top-down recursive partitioning**:
+
+- Start with all training samples at the root node.
+- Recursively split the data into subsets to maximize node purity.
+- Continue until a stopping criterion (e.g., max depth, minimum samples, or pure nodes) is met.
+
+---
+
+### How to Choose Splits?
+
+A split should make the **child nodes more pure*- than the parent node. To measure purity, we use an **impurity measure (loss function)**.
+
+---
+
+#### Naïve Attempt: Misclassification Loss
+
+One idea is to minimize **misclassification error**:
+
+$$
+L_{\text{misclassification}} = 1 - \max_c p_c
+$$
+
+where $p_c$ is the proportion of examples in the region $R$ that belong to class $c$.
+
+For a candidate split into $R_1$ and $R_2$:
+
+$$
+\Delta L = L(\text{parent}) - \Bigg( \frac{|R_1|}{|R|} L(R_1) + \frac{|R_2|}{|R|} L(R_2) \Bigg)
+$$
+
+---
+
+##### Problems with Misclassification Loss
+
+- Insensitive to distribution changes: It only depends on the majority class. Slight improvements in minority distribution are ignored.
+- Not smooth: Loss changes only when the majority class changes.
+- Poor early splits: When nodes are impure, it cannot distinguish between slightly better splits.
+
+---
+
+#### Better Criteria: Gini Impurity and Cross-Entropy
+
+**Gini Impurity**:
+
+$$
+L_{\text{Gini}} = 1 - \sum_c p_c^2
+$$
+
+**Cross-Entropy (Information Gain)**:
+
+$$
+L_{\text{Entropy}} = -\sum_c p_c \log_2 p_c
+$$
+
+Both are:
+
+- Sensitive to all class probabilities.
+- Provide smooth improvement signals.
+- Encourage good splits even for small gains in purity.
+
+---
+
+### Comparison with Examples
+
+#### Parent Node
+
+10 samples:
+
+- Class A = 6, Class B = 4
+
+$$
+p_A = 0.6, p_B = 0.4
+$$
+
+Initial impurities:
+
+$$
+\text{Misclassification} = 0.4,\; \text{Gini} = 0.48,\; \text{Entropy} = 0.971
+$$
+
+---
+
+#### Split 1 (Good Split)
+
+- Left: 5 A, 0 B
+- Right: 1 A, 4 B
+
+| Measure           | Before | After | Δ Improvement |
+| ----------------- | ------ | ----- | ------------- |
+| Misclassification | 0.40   | 0.10  | 0.30          |
+| Gini              | 0.48   | 0.16  | 0.32          |
+| Entropy           | 0.971  | 0.361 | 0.61          |
+
+---
+
+#### Split 2 (Mediocre Split)
+
+- Left: 4 A, 1 B
+- Right: 2 A, 3 B
+
+| Measure           | Before | After | Δ Improvement |
+| ----------------- | ------ | ----- | ------------- |
+| Misclassification | 0.40   | 0.30  | 0.10          |
+| Gini              | 0.48   | 0.40  | 0.08          |
+| Entropy           | 0.971  | 0.846 | 0.1245        |
+
+---
+
+#### Observation
+
+- Misclassification difference: 0.30 vs 0.10 (3:1 ratio)
+- Gini difference: 0.32 vs 0.08 (4:1 ratio)
+- Entropy difference: 0.61 vs 0.1245 (≈5:1 ratio)
+
+Entropy gives the strongest signal, Gini is second, Misclassification is weakest.
+
+---
+
+### Why Misclassification Fails
+
+- For mediocre splits, the improvement is very small, making it hard to distinguish good vs bad splits.
+- Gini and Entropy penalize impurity more aggressively and provide better guidance during greedy search.
+
+---
+
+### Visual Comparison of Impurity Measures
+
+The figure below shows impurity vs. class probability $p$ for two classes:
+
+![impurity comparision](image.png)
+
+- Misclassification: Flat except near extremes → insensitive to small improvements.
+- Gini: Smooth and responsive.
+- Entropy: Steeper near extremes → strongest signal for purity.
+
+Here’s a clean, corrected, and expanded version of your content with added details and short notes on **bagging*- and**boosting*- (with formulas):
+
+---
+
+### Problems with Decision Trees
+
+- **No additive structure**: Decision trees do not model additive relationships well since they subdivide the space(e.g., $y = x_1 + x_2$).
+  ![alt text](image-2.png)
+- **High variance**: Small changes in data can drastically change the tree structure.
+- **Low predictive accuracy**: A single tree often underperforms compared to other models.
+
+---
+
+### Advantages of Decision Trees
+
+- **Easy to explain**: The structure is intuitive and resembles human decision-making.
+- **Interpretable**: Each split represents a clear rule.
+- **Handles categorical variables easily**: No need for one-hot encoding.
+
+---
+
+### Ways to Ensemble Decision Trees
+
+- **Averaging different algorithms**: Combine predictions from models like trees, SVM, etc.
+- **Using different training sets**: Build trees on different bootstrap samples.
+- **Bagging (Bootstrap Aggregating)**: Example → **Random Forests**.
+- **Boosting**: Sequentially build trees to correct previous errors (e.g., AdaBoost, XGBoost).
+
+---
+
+#### **Bagging (Bootstrap Aggregating)**
+
+- Goal: Reduce **variance*- by averaging predictions from multiple trees trained on bootstrapped datasets.
+- Steps:
+
+  1. Sample $B$ bootstrap datasets from the original training set.
+  2. Train a decision tree $T_b$ on each dataset.
+  3. Aggregate predictions:
+
+     - For regression:
+
+       $$
+       \hat{f}_{\text{bag}}(x) = \frac{1}{B} \sum_{b=1}^B T_b(x)
+       $$
+     - For classification:
+
+       $$
+       \hat{C}_{\text{bag}}(x) = \text{majority vote}\{ T_1(x), T_2(x), \dots, T_B(x)\}
+       $$
+- Example: **Random Forest*- = Bagging + Random Feature Subsets.
+
+---
+
+#### **Boosting**
+
+- Goal: Reduce **bias*- by building trees sequentially, each correcting the previous one's errors.
+- Generic procedure:
+
+  1. Start with an initial model $f_0(x)$ (e.g., constant prediction).
+  2. For $m = 1, 2, \dots, M$:
+
+     - Fit a tree $h_m(x)$ on the residuals/errors of the current model.
+     - Update model:
+
+       $$
+       f_m(x) = f_{m-1}(x) + \nu \cdot \gamma_m h_m(x)
+       $$
+
+       where $\nu$ = learning rate, $\gamma_m$ = weight for the tree.
+- Examples:
+
+  - **AdaBoost*- (for classification):
+    Weights misclassified points higher at each iteration.
+
+    $$
+    F(x) = \sum_{m=1}^M \alpha_m h_m(x), \quad \alpha_m = \frac{1}{2} \ln \frac{1 - \varepsilon_m}{\varepsilon_m}
+    $$
+  - **Gradient Boosting**: Fits trees on negative gradients of the loss.
+
+Here’s a **short, self-contained Markdown note*- with everything you asked for:
+
+---
+
+## Expectation-Maximization (EM)
+
+Sometimes the log-likelihood involves **log of a sum**, e.g., in mixture models:
+
+$$
+\log p(X|\theta) = \sum_{i=1}^n \log \Big( \sum_{k=1}^K \pi_k f_k(x_i|\theta_k) \Big)
+$$
+
+This is hard to optimize directly. **EM*- solves it by introducing latent variables and alternating between estimating them (E-step) and maximizing parameters (M-step).
